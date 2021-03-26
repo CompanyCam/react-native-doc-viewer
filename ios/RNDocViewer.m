@@ -18,10 +18,10 @@ CGFloat prog;
 
 RCT_EXPORT_MODULE()
 
-- (NSArray<NSString *> *)supportedEvents
-{
-    return @[@"RNDownloaderProgress", @"DoneButtonEvent", @"CancelEvent", @"OKEvent"];
-}
+// - (NSArray<NSString *> *)supportedEvents
+// {
+//     return @[@"RNDownloaderProgress", @"DoneButtonEvent", @"CancelEvent", @"OKEvent"];
+// }
 
 - (dispatch_queue_t)methodQueue
 {
@@ -326,7 +326,7 @@ RCT_EXPORT_METHOD(playMovie:(NSString *)file callback:(RCTResponseSenderBlock)ca
 
 
 - (void)DoneButtonClicked {
-    [self sendEventWithName:@"DoneButtonEvent" body:@{ @"close": @true}];
+    // [self sendEventWithName:@"DoneButtonEvent" body:@{ @"close": @true}];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {
@@ -345,9 +345,9 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
         prog = (float)totalBytesWritten/totalBytesExpectedToWrite;
         //NSLog(@"downloaded %d%%", (int)(100.0*prog));
         NSNumber *progress = @([@(totalBytesWritten) floatValue]/[@(totalBytesExpectedToWrite) floatValue] * 100.0);
-        [self sendEventWithName:@"RNDownloaderProgress" body:@{ @"totalBytesWritten": @(totalBytesWritten),
-                                                                @"totalBytesExpectedToWrite": @(totalBytesExpectedToWrite),
-                                                                @"progress": progress }];
+        // [self sendEventWithName:@"RNDownloaderProgress" body:@{ @"totalBytesWritten": @(totalBytesWritten),
+        //                                                         @"totalBytesExpectedToWrite": @(totalBytesExpectedToWrite),
+        //                                                         @"progress": progress }];
 
     });
 }
@@ -370,11 +370,11 @@ RCT_EXPORT_METHOD(showAlert:(NSString *)msg) {
     
     if (buttonIndex == 0) {
         // Sent event tap on Cancel
-        [self sendEventWithName:@"CancelEvent" body:@"Tap on Cancel"];
+        // [self sendEventWithName:@"CancelEvent" body:@"Tap on Cancel"];
         
     } else if (buttonIndex == 1) {
         // Sent event tap on Ok
-        [self sendEventWithName:@"OKEvent" body:@"Tap on OK"];
+        // [self sendEventWithName:@"OKEvent" body:@"Tap on OK"];
     }
 }
 
